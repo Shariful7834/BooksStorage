@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHoler>{
+public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
     private List<Book>bookList;
 
     public BookAdapter(List<Book> bookList) {
@@ -20,18 +20,19 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHoler>
 
     @NonNull
     @Override
-    public BookViewHoler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v = inflater.inflate(R.layout.card_view_row,parent,false);
-        return new BookViewHoler(v);
+        return new BookViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BookViewHoler holder, int position) {
+    public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
     holder.imageTv.setImageResource(bookList.get(position).getImage());
     holder.nameTv.setText(bookList.get(position).getBookName());
     holder.writterTv.setText(bookList.get(position).getBookWritter());
     holder.priceTv.setText(bookList.get(position).getBookPrice());
+
     }
 
     @Override
@@ -39,17 +40,17 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHoler>
         return bookList.size();
     }
 
-    public class BookViewHoler extends RecyclerView.ViewHolder {
+    public class BookViewHolder extends RecyclerView.ViewHolder {
     private ImageView imageTv;
     private TextView nameTv;
     private TextView writterTv;
     private TextView priceTv;
-        public BookViewHoler(final View itemView) {
+        public BookViewHolder(final View itemView) {
             super(itemView);
-            itemView.findViewById(R.id.bookImageInput);
-            itemView.findViewById(R.id.bookNameInput);
-            itemView.findViewById(R.id.bookWritterInput);
-            itemView.findViewById(R.id.bookPriceInput);
+            imageTv = itemView.findViewById(R.id.bookImageInput);
+            nameTv = itemView.findViewById(R.id.bookNameInput);
+            writterTv = itemView.findViewById(R.id.bookWritterInput);
+            priceTv = itemView.findViewById(R.id.bookPriceInput);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
