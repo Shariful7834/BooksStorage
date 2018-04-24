@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -43,12 +44,21 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHoler>
     private TextView nameTv;
     private TextView writterTv;
     private TextView priceTv;
-        public BookViewHoler(View itemView) {
+        public BookViewHoler(final View itemView) {
             super(itemView);
             itemView.findViewById(R.id.bookImageInput);
             itemView.findViewById(R.id.bookNameInput);
             itemView.findViewById(R.id.bookWritterInput);
             itemView.findViewById(R.id.bookPriceInput);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    Toast.makeText(itemView.getContext(), bookList.get(position).getBookName(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
+
     }
 }
