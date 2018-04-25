@@ -8,11 +8,11 @@ import android.widget.Toast;
 public class BookMarkHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Bookmark.db";
-    private static final String TABLE_NAME = "Bookmark_details";
+    private static final String TABLE_NAME = "bookmark_details";
     private static final String BOOK_ID = "bookNameId";
     private static final String USER_ID = "userId";
     private static final int VERSION_NUMBER = 1;
-    private static final String CREATE_TABLE = "CREATE TABLE "+TABLE_NAME+" ("+BOOK_ID+" KEY1, "+USER_ID+" KEY2)";
+    private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + BOOK_ID + " KEY1, " + USER_ID + " KEY2)";
 
     private Context context;
 
@@ -23,14 +23,12 @@ public class BookMarkHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        try
-        {
-            Toast.makeText(context,"On create is called",Toast.LENGTH_LONG).show();
+        try {
+            Toast.makeText(context, "On create is called", Toast.LENGTH_LONG).show();
             db.execSQL(CREATE_TABLE);
+        } catch (Exception e) {
+            Toast.makeText(context, "Exception : " + e, Toast.LENGTH_LONG).show();
         }
-        catch (Exception e)
-        {
-            Toast.makeText(context,"Exception : "+e,Toast.LENGTH_LONG).show();
         }
 
     @Override
